@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library</title>
+</head>
+<body>
+    <h1>Available Books</h1>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} 
+            {% if book.available_copies > 0 %}
+                <form method="post" action="{% url 'reserve_book' book_id=forloop.counter0 %}">
+                    {% csrf_token %}
+                    <label for="reader_name">Reader Name:</label>
+                    <input type="text" name="reader_name" required>
+                    <button type="submit">Reserve</button>
+                </form>
+            {% else %}
+                Not Available
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
