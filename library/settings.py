@@ -1,8 +1,9 @@
 import os
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'your-secret-key'  # Замініть на свій секретний ключ
+SECRET_KEY = '2423'
 
 DEBUG = True
 
@@ -15,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'library_app',  # Додайте вашу додаток тут
+    'library',
 ]
 
 MIDDLEWARE = [
@@ -25,10 +26,9 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'library.urls'  # Ваші URL шляхи
+ROOT_URLCONF = 'library.urls'
 
 TEMPLATES = [
     {
@@ -47,11 +47,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'library.wsgi.application'
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'library',
+        'USER': 'root',
+        'PASSWORD': 'Jack4257769',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

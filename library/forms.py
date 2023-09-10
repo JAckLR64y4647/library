@@ -1,11 +1,7 @@
 from django import forms
-from .models import Book, Reader
+from .models import Book
 
 class BookReservationForm(forms.Form):
-    book = forms.ModelChoiceField(queryset=Book.objects.filter(available_copies__gt=0))
-    reader = forms.ModelChoiceField(queryset=Reader.objects.all())
-    return_date = forms.DateTimeField(widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD HH:MM'}))
-
-class BookReturnForm(forms.Form):
-    book = forms.ModelChoiceField(queryset=Book.objects.filter(reservation__isnull=False))
-    return_date = forms.DateTimeField(widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD HH:MM'}))
+    book_id = forms.IntegerField(widget=forms.HiddenInput())
+    user_name = forms.CharField(max_length=255)
+    pickup_date = forms.DateField()
